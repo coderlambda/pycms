@@ -1,0 +1,11 @@
+extends ../layout
+block content
+  ul
+  - var len = categories.length
+  - for(var i = 0; i < len; i ++)
+    li
+      a(href="edit?cid=" + categories[i]._id)= categories[i].categoryName
+  - end
+    li
+      a(href="add")
+        | +

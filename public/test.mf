@@ -1,0 +1,7 @@
+CACHE MANIFEST
+
+CACHE:
+/css/style.css
+
+NETWORK:
+*

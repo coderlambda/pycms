@@ -1,0 +1,28 @@
+extends ../layout
+
+block content
+  form.form-horizontal.col-sm-8.col-sm-offset-2(action="add", method="post")
+    div.form-group
+      label.col-sm-2.control-label
+        | 标题
+      div.col-sm-10
+        input.form-control(type="text",name="articleName", value=article.articleName)
+        input(type="hidden", name="_id", value="article._id")
+    div.form-group
+      label.col-sm-2.control-label
+        | 子类
+      div.col-sm-10
+        select.form-control(name="subCategoryId")
+          - var sl = subCategories.length
+          - for (var i = 0; i < sl; i++)
+            option(value="subCategories[i]._id")= subCategories.name
+    div.form-group
+      label.col-sm-2.control-label
+        | 内容
+      div.col-sm-10
+        textarea.form-control(name="content")
+          = article.content
+    div.form-group
+      div.col-sm-10.col-sm-offset-2
+        button.btn.btn-default(type="submit")
+          | 提交

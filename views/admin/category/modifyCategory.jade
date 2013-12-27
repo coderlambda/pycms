@@ -1,0 +1,13 @@
+extends ../layout
+block content
+  form.form-horizontal.col-sm-8.col-sm-offset-2(action="add", method="post")
+    div.form-group
+      label.col-sm-2.control-label
+        | 类名
+      div.col-sm-10
+        input.form-control(type="text",name="categoryName", value=category.articleName)
+        input(type="hidden", name="_id", value="category._id")
+      div.form-group
+      div.col-sm-10.col-sm-offset-2
+        button.btn.btn-default(type="submit")
+          | 提交

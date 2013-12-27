@@ -1,0 +1,12 @@
+extends ../layout
+
+block content
+  ul
+  - var len = articles.length
+  - for(var i = 0; i < len; i ++)
+    li
+      a(href="edit?aid=" + articles[i]._id)= articles[i].articleName
+  - end
+    li
+      a(href="add")
+        | +
