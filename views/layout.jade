@@ -1,13 +1,20 @@
 doctype 5
-html(manifest="test.mf")
+html
   head
     title= title
     link(rel='stylesheet', href='/css/style.css')
+    block css
   body
-    div.head
-      | XXX
-    ul.main-menu
-      li
-        a(href="#")
-          | Home
-    block content
+    div.header
+      img.logo1(src="images/index/logo_1.png")
+      img.logo2(src="images/index/logo_2.png")
+    div.content
+      ul.main-menu
+        li
+          a.active(href="/")
+            | 首页
+        li
+          a(href="#")
+            | Home
+      div.content-body.clearfix
+        block content

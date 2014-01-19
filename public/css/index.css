@@ -1,0 +1,43 @@
+.m-media {
+  width: auto;
+}
+.slider {
+  float: left;
+  border: 1px solid #999;
+  width: 400px;
+  height: 300px;
+}
+.blocks {
+  margin-left: 420px;
+}
+.block {
+  margin-bottom: 12px;
+}
+.block-head {
+  margin-bottom: 12px;
+}
+.block-head .label {
+  display: inline-block;
+  padding: 8px;
+  line-height: 12px;
+  color: #fff;
+  border-radius: 3px;
+  background: #0f7dbf;
+}
+.block-body a {
+  color: #666;
+}
+.block-body a:hover {
+  text-decoration: underline;
+}
+.block-body .link-list,
+.block-body .link-list li {
+  list-style: disc;
+}
+.block-body .link-list li {
+  margin-left: 20px;
+  line-height: 28px;
+}
+.block-body .link-list .date {
+  float: right;
+}

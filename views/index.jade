@@ -1,5 +1,37 @@
 extends layout
 
+block css
+  link(rel="stylesheet", href="/css/index.css")
+
 block content
-  h1= title
-  p Welcome to #{title}
+
+  div.m-media
+    div.slider
+    div.blocks
+      div.block
+        div.block-head
+          span.label
+            | 新闻新闻
+        div.block-body
+          ul.link-list
+            li
+              a(href="#")
+                span.date
+                  | 2012-12-12
+                | 链接链接链接链接
+            li
+              a(href="#")
+                span.date
+                  | 2012-12-12
+                | 链接链接链接链接链接链接链接链接
+      div.block
+        div.block-head
+          span.label
+            | 新闻新闻
+        div.block-body
+          ul.link-list
+            li
+              a(href="#")
+                span.date
+                  | 2012-12-12
+                | asdfasdf
