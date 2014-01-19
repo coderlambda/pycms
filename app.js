@@ -7,6 +7,8 @@ var express = require('express');
 var routes = require('./routes');
 var user = require('./routes/user');
 var article = require('./routes/admin/article');
+var category = require('./routes/admin/category');
+var subCategory = require('./routes/admin/subCategory');
 var admin = require('./routes/admin');
 var Promise = require('promise');
 var MongoClient = require('mongodb').MongoClient;
@@ -56,11 +58,20 @@ if ('development' == app.get('env')) {
 
 app.get('/', routes.index);
 app.get('/users', user.list);
-//app.get('/admin', admin.index);
+app.get('/admin', admin.index);
 app.get('/admin/article/', article.list);
-app.get('/admin/article/add', article.modifyArticle);
+app.get('/admin/article/update', article.modifyArticle);
 app.get('/admin/article/edit', article.modifyArticle);
-app.post('/admin/article/add', article.add);
+app.post('/admin/article/update', article.update);
+app.get('/admin/article/del', article.del);
+
+app.get('/admin/category/', category.list);
+app.get('/admin/category/detail', category.categoryDetail);
+app.post('/admin/category/', category.modify);
+app.get('/admin/category/del', category.del);
+
+app.get('/admin/subCategory/', subCategory.list);
+app.post('/admin/subCategory/', subCategory.modify);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

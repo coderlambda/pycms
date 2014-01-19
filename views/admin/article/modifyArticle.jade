@@ -1,28 +1,91 @@
 extends ../layout
 
 block content
-  form.form-horizontal.col-sm-8.col-sm-offset-2(action="add", method="post")
+  link(rel="stylesheet",href="/css/admin/article.css")
+  form.form-horizontal.col-sm-8.col-sm-offset-2(action="update", method="post", id="J_form")
     div.form-group
-      label.col-sm-2.control-label
+      label.col-sm-1.control-label
         | 标题
-      div.col-sm-10
+      div.col-sm-11
         input.form-control(type="text",name="articleName", value=article.articleName)
-        input(type="hidden", name="_id", value="article._id")
+        input(type="hidden", name="_id", value=article._id)
+        input(type="hidden", name="categoryId", value=article.categoryId)
     div.form-group
-      label.col-sm-2.control-label
+      label.col-sm-1.control-label
         | 子类
-      div.col-sm-10
-        select.form-control(name="subCategoryId")
-          - var sl = subCategories.length
-          - for (var i = 0; i < sl; i++)
-            option(value="subCategories[i]._id")= subCategories.name
+      div.col-sm-11
+        input.form-control(type="text", name="subCategory", value=article.subCategory)
     div.form-group
-      label.col-sm-2.control-label
+      label.col-sm-1.control-label
         | 内容
-      div.col-sm-10
-        textarea.form-control(name="content")
-          = article.content
+      div.col-sm-11
+        div.btn-toolbar(data-role="editor-toolbar",data-target="#editor")
+          div.btn-group
+            a.btn.btn-default.dropdown-toggle(data-toggle="dropdown",title="Font")
+              i.glyphicon.glyphicon-font
+              b.caret
+            ul.dropdown-menu
+          div.btn-group
+            a.btn.btn-default.dropdown-toggle(data-toggle="dropdown",title="Font Size")
+              i.glyphicon.glyphicon-text-height
+              b.caret
+            ul.dropdown-menu
+              li
+                a(data-edit="fontSize 5")
+                  font(size="5")
+                    | Huge
+              li
+                a(data-edit="fontSize 3")
+                  font(size="3")
+                    | Normal
+              li
+                a(data-edit="fontSize 1")
+                  font(size="1")
+                   | Small
+          div.btn-group
+            a.btn.btn-default(data-deit="bold",title="Bold (Ctrl+B)")
+              i.glyphicon.glyphicon-bold
+            a.btn.btn-default(data-deit="italic",title="Italic (Ctrl+I)")
+              i.glyphicon.glyphicon-italic
+          div.btn-group
+            a.btn.btn-default(data-edit="insertunorderedlist",title="Bullet list")
+              i.glyphicon.glyphicon-list
+            a.btn.btn-default(data-edit="insertorderedlist",title="Number list")
+              |  1.
+            a.btn.btn-default(data-edit="outdent",title="Reduce indent (Shift+Tab)")
+              i.glyphicon.glyphicon-indent-left
+            a.btn.btn-default(data-edit="indent",title="Indent (Tab)")
+              i.glyphicon.glyphicon-indent-right
+          div.btn-group
+            a.btn.btn-info(data-edit="justifyleft",title="Align Left (Ctrl/Cmd+L)")
+              i.glyphicon.glyphicon-align-left
+            a.btn.btn-default(data-edit="justifycenter",title="Center (Ctrl/Cmd+E)")
+              i.glyphicon.glyphicon-align-center
+            a.btn.btn-default(data-edit="justifyright",title="Align Right (Ctrl/Cmd+R)")
+              i.glyphicon.glyphicon-align-right
+            a.btn.btn-default(data-edit="justifyfull",title="Justify (Ctrl/Cmd+J)")
+              i.glyphicon.glyphicon-align-justify
+          div.btn-group
+            a.btn.btn-default.dropdown-toggle(data-toggle="dropdown",title="Hyperlink")
+              i.glyphicon.glyphicon-link
+            div.dropdown-menu.input-append
+              input.form-control(placeholder="URL",type="text",data-edit="createLink")
+              button.btn.btn-default(type="button")
+                | 添加
+          div.btn-group
+            a#pictureBtn.btn.btn-default(title="插入图片")
+              i.glyphicon.glyphicon-picture
+            input(type="file",data-role="magic-overlay",data-target="#pictureBtn",data-edit="insertImage")
     div.form-group
-      div.col-sm-10.col-sm-offset-2
-        button.btn.btn-default(type="submit")
+      div.col-sm-11.col-sm-offset-1
+        div#editor.form-control
+          != article.content
+        input#J_articleContent(type="hidden",name="content")=atricle.content
+    div.form-group
+      div.col-sm-11.col-sm-offset-1
+        button.btn.btn-primary(type="submit")
           | 提交
+  script(src="/js/lib/jquery.hotkeys.js")
+  script(src="/js/lib/wysiwyg.js")
+  script(src="/js/admin/article.js")
+

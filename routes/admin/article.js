@@ -15,17 +15,38 @@ exports.modifyArticle = function(req, res) {
         var id = req.param("aid");
         if (id && id != ""){
             am.get(db, id).done(function(a) {
-                res.render('admin/article/modifyArticle', {article: a, subCategories: sc});
+                res.render('admin/article/modifyArticle', {article: a});
             });
         } else {
-            res.render('admin/article/modifyArticle', {article: {}, subCategories: sc});
+            var cid = req.param("cid");
+            res.render('admin/article/modifyArticle', {article: {categoryId: cid}});
         }
     });
 }
 
-exports.add = function(req, res) {
-    am.add(req.db, req.body)
-        .done(function(result){
-            res.redirect('../');
-        });
+exports.update = function(req, res) {
+    var id = req.param("_id");
+    if (id && id != "") {
+        am.update(req.db, req.body)
+            .done(function(result){
+                res.redirect('/admin/category/detail?id=' + req.body.categoryId);
+            });
+    } else {
+        am.add(req.db, req.body)
+            .done(function(result){
+                res.redirect('/admin/category/detail?id=' + req.body.categoryId);
+            });
+    }
+
+}
+
+exports.del = function(req, res) {
+    var aid = req.param("aid"),
+        categoryId = req.param("cid");
+    if (aid && aid != "") {
+        am.del(req.db, aid)
+            .done(function(result){
+                res.redirect('/admin/category/detail?id=' + categoryId);
+            })
+    }
 }

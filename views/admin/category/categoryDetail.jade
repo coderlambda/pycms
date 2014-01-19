@@ -1,0 +1,32 @@
+//
+   Created by cangya.jyt on 14-1-11.
+extends ../layout
+block content
+  div.form-horizontal.col-sm-8.col-sm-offset-2
+    table.table.table-striped.table-bordered.table-hover
+      thead
+        tr
+          th
+            | 序号
+          th
+            | 子类
+          th
+            | 标题
+          th
+            | 操作
+      tbody
+      - var len = articles.length
+      - for(var i = 0; i < len; i ++)
+        tr
+          td=i+1
+          td=articles[i].subCategory
+          td
+            a(href="/admin/article/edit?aid=" + articles[i]._id)= articles[i].articleName
+          td
+            a.form-control-static.span.glyphicon.glyphicon-trash(style="font-size:20px",href="/admin/article/del?aid=" + articles[i]._id + "&cid=" + category._id)
+      - end
+      tfoot
+        tr
+          td(colspan=4)
+            a.btn.btn-success(href="/admin/article/update?cid=" + category._id)
+              | 添加文章

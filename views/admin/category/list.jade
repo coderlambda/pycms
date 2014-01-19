@@ -1,11 +1,20 @@
 extends ../layout
 block content
-  ul
-  - var len = categories.length
-  - for(var i = 0; i < len; i ++)
-    li
-      a(href="edit?cid=" + categories[i]._id)= categories[i].categoryName
-  - end
-    li
-      a(href="add")
-        | +
+  form.form-horizontal.col-sm-8.col-sm-offset-2(method="post")
+    - var len = categories.length
+    - for(var i = 0; i < len; i ++)
+      div.form-group.row
+        input(type="hidden",name="categoryId",value=categories[i]._id)
+        div.col-sm-4
+          input.form-control.col-sm-4(name="categoryName",value=categories[i].categoryName)
+        a.form-control-static.glyphicon.glyphicon-edit(style="margin-right:10px;font-size:20px",href="detail?id=" + categories[i]._id)
+        a.form-control-static.span.glyphicon.glyphicon-trash(style="font-size:20px",href="del?id=" + categories[i]._id)
+    - end
+    div.form-group
+      div.col-sm-4
+        input.form-control(name="addCategoryName")
+    div.form-group
+      div.col-sm-4
+        button.btn.btn-success(type="submit")
+          | 保存
+

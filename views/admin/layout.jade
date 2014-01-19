@@ -2,6 +2,22 @@ doctype 5
 html
   head
     link(rel="stylesheet", href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css")
-  body
+    script(src="http://code.jquery.com/jquery.js")
+    script(src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js")
+  body(style="padding-top:70px")
+    div.navbar.navbar-default.navbar-fixed-top
+      div.navbar-header
+        span.navbar-brand
+          | Admin
+      div.collapse.navbar-collapse
+        ul.nav.navbar-nav
+          li.dropdown
+            a.dropdown-toggle(href="#",data-toggle="dropdown")
+              | 文章管理
+              b.caret
+            ul.dropdown-menu
+              li
+                a(href="/admin/category/")
+                  | 文章分类管理
     block content
 
