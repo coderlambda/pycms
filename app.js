@@ -6,7 +6,8 @@
 var express = require('express');
 var routes = require('./routes');
 var user = require('./routes/user');
-var article = require('./routes/admin/article');
+var articleAdmin = require('./routes/admin/article');
+var article = require('./routes/article');
 var category = require('./routes/admin/category');
 var subCategory = require('./routes/admin/subCategory');
 var admin = require('./routes/admin');
@@ -17,7 +18,7 @@ var path = require('path');
 
 //init database
 var dbInit = new Promise(function(resolve, reject){
-    MongoClient.connect("mongodb://localhost:27017/text", function(err, db) {
+    MongoClient.connect("mongodb://115.28.172.124:27017/text", function(err, db) {
         db.collectionNames(function(err, collections){
             console.log(collections);
         });
@@ -59,11 +60,11 @@ if ('development' == app.get('env')) {
 app.get('/', routes.index);
 app.get('/users', user.list);
 app.get('/admin', admin.index);
-app.get('/admin/article/', article.list);
-app.get('/admin/article/update', article.modifyArticle);
-app.get('/admin/article/edit', article.modifyArticle);
-app.post('/admin/article/update', article.update);
-app.get('/admin/article/del', article.del);
+app.get('/admin/article/', articleAdmin.list);
+app.get('/admin/article/update', articleAdmin.modifyArticle);
+app.get('/admin/article/edit', articleAdmin.modifyArticle);
+app.post('/admin/article/update', articleAdmin.update);
+app.get('/admin/article/del', articleAdmin.del);
 
 app.get('/admin/category/', category.list);
 app.get('/admin/category/detail', category.categoryDetail);
@@ -73,6 +74,12 @@ app.get('/admin/category/del', category.del);
 app.get('/admin/subCategory/', subCategory.list);
 app.post('/admin/subCategory/', subCategory.modify);
 
+app.get('/article', article.show);
+
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
+});
+
+process.on('uncaughtException', function(err) {
+    console.log('Caught exception: ' + err);
 });

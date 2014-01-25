@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/pycms.iml" filepath="$PROJECT_DIR$/.idea/pycms.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/pycms.iml" filepath="$PROJECT_DIR$/.idea/pycms.iml" />
     </modules>
   </component>
 </project>

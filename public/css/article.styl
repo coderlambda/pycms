@@ -1,0 +1,50 @@
+.tab-list
+  float: left;
+
+  padding: 30px  0 0 20px;
+  background: url(/images/article/tab_bg.png) 0 0 repeat-y;
+  width: 180px;
+
+  li
+    position: relative;
+    padding: 7px 0;
+    height: 32px;
+    width: 160px;
+    border-bottom: 1px solid #ededed;
+    font-size: 0;
+
+    .tab-append
+      display: none;
+      position: absolute;
+      top: 7px;
+      right: -13px;
+      height: 32px;
+      line-height: 32px;
+      width: 13px;
+      vertical-align: top;
+      background: url(/images/article/tab_append.png) 0 0 repeat-y;
+
+    &.active-tab
+      .tab-append
+        display: inline-block;
+
+      a
+        background-color: #0f81c3;
+        color: #ffffff;
+      a:hover
+        background-color: #0f81c3;
+    a
+      display: inline-block;
+      padding: 6px 20px;
+      line-height: 20px;
+      width: 120px;
+      border-radius: 3px 0 0 3px;
+      font-size: 14px;
+      color: #333;
+      transition: 0.2s;
+
+    a:hover
+      background-color: #ebebeb;
+
+.article-content
+  display: inline

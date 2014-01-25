@@ -15,12 +15,14 @@ exports.modify = function(req, res) {
     var db = req.db;
     var addCategory = req.param("addCategoryName");
     var idList = req.param("categoryId");
+    //var visable = req.param("visable");
     var categoryList = req.param("categoryName");
     var id;
 
     if (addCategory && addCategory != "") {
         cm.add(db, {categoryName: addCategory});
     }
+    console.log(req.body);
     while (id = idList.pop()){
         cm.update(db,{
             _id:id,

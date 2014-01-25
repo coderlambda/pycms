@@ -1,0 +1,26 @@
+//
+   Created by Administrator on 14-1-25.
+extends ../layout
+
+block css
+    link(rel="stylesheet", href="/css/article.css")
+
+block content
+  ul.tab-list
+    li.active-tab
+      a
+        | tab1
+      span.tab-append
+        | &gt;
+
+    li
+      a
+        | tab2
+      span.tab-append
+        | &gt;
+
+  div.article-content
+    p
+      | asdfsadf asdf asdf
+    p
+      | asdfsadf asdf asdf

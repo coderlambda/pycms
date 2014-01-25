@@ -3,7 +3,7 @@ var scm = require("./manager/SubCategoryManager");
 
 exports.list = function(req, res) {
     am.list(req.db).done(function(list){
-        res.render('admin/article/list.jade', {articles: list});
+        res.render('admin/articleAdmin/list.jade', {articles: list});
     });
 }
 
