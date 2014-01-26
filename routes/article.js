@@ -1,19 +1,29 @@
 var Promise = require("promise");
 var am = require("./admin/manager/ArticleManager");
 var cm = require("./admin/manager/CategoryManager");
+var _ = require("lodash");
 
 
 exports.show = function(req, res) {
-    var id = req.param("id");
+    var id = req.param("aid");
+    var categoryId = req.param("cid");
 
-    am.get(req.db, id).done(function(article) {
-        cm.get(req.db, article.categoryId).done(function(category){
-            console.log(article);
-            console.log(category);
-            res.render('article/tabedArticle', {
-                article: article,
-                category: category
-            });
+    am.list(req.db, {categoryId: categoryId}).done(function(list) {
+        var article = _.find(list, function(a){
+            return a._id == id;
         });
+
+        console.log(list);
+
+        var titleList = _.map(list, function(item) {
+            return _.pick(item, ["_id","articleName"]);
+        });
+
+
+
+        res.render("article/tabedArticle.jade", {article: article, list: titleList});
     });
+
+
+
 }

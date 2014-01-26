@@ -1,0 +1,57 @@
+.content-wrap {
+  border: 1px solid #e4e4e4;
+  border-width: 1px 0;
+  background: url("/images/article/tab_bg.png") 0 0 repeat-y;
+  min-height: 300px;
+}
+.tab-list {
+  float: left;
+  padding: 30px 0 0 20px;
+  width: 190px;
+}
+.tab-list li {
+  position: relative;
+  padding: 7px 0;
+  height: 32px;
+  width: 160px;
+  border-bottom: 1px solid #ededed;
+  font-size: 0;
+}
+.tab-list li .tab-append {
+  display: none;
+  position: absolute;
+  top: 7px;
+  right: -13px;
+  height: 32px;
+  line-height: 32px;
+  width: 13px;
+  vertical-align: top;
+  background: url("/images/article/tab_append.png") 0 0 no-repeat;
+}
+.tab-list li.active-tab .tab-append {
+  display: inline-block;
+}
+.tab-list li.active-tab a {
+  background-color: #0f81c3;
+  color: #fff;
+}
+.tab-list li.active-tab a:hover {
+  background-color: #0f81c3;
+}
+.tab-list li a {
+  display: inline-block;
+  padding: 6px 20px;
+  line-height: 20px;
+  width: 120px;
+  border-radius: 3px 0 0 3px;
+  font-size: 14px;
+  color: #333;
+  font-family: "微软雅黑";
+  transition: 0.2s;
+}
+.tab-list li a:hover {
+  background-color: #ebebeb;
+}
+.article-content {
+  padding: 12px;
+}

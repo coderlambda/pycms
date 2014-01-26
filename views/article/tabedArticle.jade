@@ -6,21 +6,16 @@ block css
     link(rel="stylesheet", href="/css/article.css")
 
 block content
-  ul.tab-list
-    li.active-tab
-      a
-        | tab1
-      span.tab-append
-        | &gt;
+  div.content-wrap.clearfix
+      ul.tab-list
+        - for (var i = 0; i < list.length; i++)
+          if (list[i]._id == article._id)
+            li.active-tab
+              a(href="#")=list[i].articleName
+                  span.tab-append
+          else
+            li
+              a(href="/article?aid=" + list[i]._id + "&cid=" + article.categoryId)=list[i].articleName
+              span.tab-append
 
-    li
-      a
-        | tab2
-      span.tab-append
-        | &gt;
-
-  div.article-content
-    p
-      | asdfsadf asdf asdf
-    p
-      | asdfsadf asdf asdf
+      div.article-content!=article.content
