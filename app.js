@@ -11,6 +11,7 @@ var article = require('./routes/article');
 var category = require('./routes/admin/category');
 var subCategory = require('./routes/admin/subCategory');
 var admin = require('./routes/admin');
+var upload = require('./routes/admin/upload');
 var Promise = require('promise');
 var MongoClient = require('mongodb').MongoClient;
 var http = require('http');
@@ -28,7 +29,7 @@ var dbInit = new Promise(function(resolve, reject){
         } else {
             resolve(db);
         }
-    });
+});
 });
 
 
@@ -39,8 +40,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 app.use(express.favicon());
 app.use(express.logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded());
+app.use(express.bodyParser({uploadDir:'./public/uploads/images'}));
 app.use(express.methodOverride());
 app.use(function(req, res, next){
     dbInit.done(function(db) {
@@ -70,6 +70,8 @@ app.get('/admin/category/', category.list);
 app.get('/admin/category/detail', category.categoryDetail);
 app.post('/admin/category/', category.modify);
 app.get('/admin/category/del', category.del);
+
+app.post('/admin/upload/image', upload.image);
 
 app.get('/admin/subCategory/', subCategory.list);
 app.post('/admin/subCategory/', subCategory.modify);

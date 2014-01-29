@@ -53,5 +53,6 @@
   background-color: #ebebeb;
 }
 .article-content {
-  padding: 12px;
+  margin-left: 200px;
+  padding: 12px 12px 150px;
 }

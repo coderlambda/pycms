@@ -10,11 +10,13 @@ html
       img.logo2(src="/images/index/logo_2.png")
     div.content
       ul.main-menu
-        li
-          a.active(href="/")
-            | 首页
-        li
-          a(href="#")
-            | Home
+        - var len =  categories.length
+        - for (var i = 0; i < len ; i++)
+          li
+            - if (categories[i].active)
+              a.active(href="/article?cid=" + categories[i]._id)=categories[i].categoryName
+            - else
+              a(href="/article?cid=" + categories[i]._id)=categories[i].categoryName
+
       div.content-body.clearfix
         block content

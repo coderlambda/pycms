@@ -1,35 +1,71 @@
-$(function(){
-    function initToolbarBootstrapBindings() {
-        var fonts = ['Serif', 'Sans', 'Arial', 'Arial Black', 'Courier',
-                'Courier New', 'Comic Sans MS', 'Helvetica', 'Impact', 'Lucida Grande', 'Lucida Sans', 'Tahoma', 'Times',
-                'Times New Roman', 'Verdana'],
-            fontTarget = $('[title=Font]').siblings('.dropdown-menu');
-        $.each(fonts, function (idx, fontName) {
-            fontTarget.append($('<li><a data-edit="fontName ' + fontName +'" style="font-family:\''+ fontName +'\'">'+fontName + '</a></li>'));
-        });
-        $('a[title]').tooltip({container:'body'});
-        $('.dropdown-menu input').click(function() {return false;})
-            .change(function () {$(this).parent('.dropdown-menu').siblings('.dropdown-toggle').dropdown('toggle');})
-            .keydown('esc', function () {this.value='';$(this).change();});
+KISSY.ready(function (S) {
 
-        $('[data-role=magic-overlay]').each(function () {
-            var overlay = $(this), target = $(overlay.data('target'));
-            overlay.css('opacity', 0).css('position', 'absolute').offset(target.offset()).width(target.outerWidth()).height(target.outerHeight());
-        });
-        $('#voiceBtn').hide();
-        // if ("onwebkitspeechchange"  in document.createElement("input")) {
-        //   var editorOffset = $('#editor').offset();
-        //   $('#voiceBtn').css('position','absolute').offset({top: editorOffset.top, left: editorOffset.left+$('#editor').innerWidth()-35});
-        // } else {
-        //   $('#voiceBtn').hide();
-        // }
-    };
+    S.use('editor', function () {
 
+        var KE = KISSY.Editor;
+        var cfg = {
+            attachForm:true,
+            baseZIndex:10000,
+            //自定义样式
+            //customStyle:"p{color:purple;}",
+            //自定义外部样式
+            //customLink:["http://localhost/customLink.css","http://xx.com/y2.css"],
+            //是否一开始自动聚焦
+            //focus:true,
+            pluginConfig:{
+                "image":{
+                    upload:{
+                        serverUrl:"/admin/upload/image",
+                        serverParams:{
+                        },
+                        surfix:"png,jpg,jpeg,gif",
+                        fileInput:"Filedata",
+                        sizeLimit:1000 //k
+                    }
+                },
+                //"font-size":false,
+                //"font-family":false,
+                //"font-bold":false,
+                // "font-italic":false,
+                //"font-underline":false,
 
-    initToolbarBootstrapBindings();
-    $('#editor').wysiwyg();
-    window.prettyPrint && prettyPrint();
-    $("#J_form").submit(function(){
-        $("#J_articleContent").val($("#editor").html());
+//                "font-strikeThrough":{
+//                    style:{
+//                        element        : 'strike',
+//                        overrides    : [
+//                            {element        : 'span',
+//                                attributes         : { style:'text-decoration: line-through;' }},
+//                            { element : 's' },
+//                            { element : 'del' }
+//                        ]
+//                    }
+//                },
+                "resize":{
+                    direction:["y"]
+                },
+
+                dragupload:{
+                    surfix:"png,jpg,jpeg,gif",
+                    fileInput:"Filedata",
+                    sizeLimit:1000,
+                    serverUrl:"/code/upload/web/upload.jsp",
+                    serverParams:{
+                        waterMark:function () {
+                            return true;
+                        }
+                    }
+                }
+            }
+        };
+        var editor = KE("#editor", S.clone(cfg)).use("elementpaths," +
+            "preview," +
+            "separator," +
+            "undo,separator," +
+            "removeformat,font,format,color,separator," +
+            "list,indent," +
+            "justify,separator,link," +
+            "image," +
+            "separator,table,resize," +
+            "pagebreak,separator,maximize,dragupload");
     });
 });

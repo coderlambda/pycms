@@ -63,10 +63,11 @@ a {
   color: #fff;
   line-height: 36px;
   border-radius: 3px;
-  transition: 0.2s;
+  font-size: 14px;
 }
 .main-menu li a:hover {
   background-color: #1e9fed;
+  transition: 0.2s;
 }
 .main-menu li a.active {
   color: #0f7dbf;

@@ -8,14 +8,14 @@ block css
 block content
   div.content-wrap.clearfix
       ul.tab-list
-        - for (var i = 0; i < list.length; i++)
-          if (list[i]._id == article._id)
+        - for (var i = 0; i < titleList.length; i++)
+          if (titleList[i]._id == article._id)
             li.active-tab
-              a(href="#")=list[i].articleName
+              a(href="#")=titleList[i].subCategory
                   span.tab-append
           else
             li
-              a(href="/article?aid=" + list[i]._id + "&cid=" + article.categoryId)=list[i].articleName
+              a(href="/article?aid=" + titleList[i]._id + "&cid=" + article.categoryId)=titleList[i].subCategory
               span.tab-append
 
       div.article-content!=article.content
