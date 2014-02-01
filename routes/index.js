@@ -14,5 +14,4 @@ exports.index = function(req, res){
     cm.list(req.db, {}).done(function(categoryList){
         res.render('index', { categories: categoryList});
     });
-
 };

@@ -4,9 +4,20 @@
   background: url("/images/article/tab_bg.png") 0 0 repeat-y;
   min-height: 300px;
 }
+.content-wrap.single {
+  background-image: none;
+  border-width: 0;
+}
+.content-wrap.single .article-content {
+  margin: 0;
+}
+.article-content {
+  margin-left: 200px;
+  padding: 12px 12px 150px;
+}
 .tab-list {
   float: left;
-  padding: 30px 0 0 20px;
+  padding: 30px 0 100px 20px;
   width: 190px;
 }
 .tab-list li {
@@ -51,8 +62,4 @@
 }
 .tab-list li a:hover {
   background-color: #ebebeb;
-}
-.article-content {
-  margin-left: 200px;
-  padding: 12px 12px 150px;
 }

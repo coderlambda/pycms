@@ -5,7 +5,7 @@
 
 exports.image = function(req, rsp) {
     var path = req.files.Filedata.path;
-    path = path.replace(/public\\/, "/").replace("\\", "/");
+    path = path.replace(/public[\\\/]/, "/").replace("\\", "/");
     console.log(path);
     rsp.send({imgUrl: path});
 }

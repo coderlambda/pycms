@@ -11,27 +11,24 @@ block content
       div.block
         div.block-head
           span.label
-            | 新闻新闻
+            | 动态新闻
         div.block-body
           ul.link-list
-            li
-              a(href="#")
-                span.date
-                  | 2012-12-12
-                | 链接链接链接链接
-            li
-              a(href="#")
-                span.date
-                  | 2012-12-12
-                | 链接链接链接链接链接链接链接链接
+            - for (var i = 0; i < newsList.length; i++)
+              li
+                a(href="#")
+                  span.date
+                    = newsList[i].gmt_create
+                  = newsList[i].articleName
       div.block
         div.block-head
           span.label
-            | 新闻新闻
+            | 通知公告
         div.block-body
           ul.link-list
-            li
-              a(href="#")
-                span.date
-                  | 2012-12-12
-                | asdfasdf
+            - for (var i = 0; i < noticeList.length; i++)
+              li
+                a(href="#")
+                  span.date
+                     = noticeList[i].gmt_create
+                  = noticeList[i].articleName
